@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('pages.home');
 })->name('home');
 
-// routes/web.php
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
-Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
-
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
-Route::get('/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
+Route::middleware([AdminMiddleware::class])->group(function () {
+    Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users.destroy');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+});
