@@ -11,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('announcments', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('username');
             $table->string('email');
             $table->string('title');
+            $table->string('phone');
             $table->text('description');
-            $table->float('prix');
+            $table->float('price');
             $table->string('picture_1');
             $table->string('picture_2');
             $table->string('picture_3');
             $table->string('picture_4');
             $table->string('picture_5');
-            $table->boolean('is_validated');
+            $table->boolean('is_validated')->default(0);
             $table->unsignedBigInteger('category');
             $table->foreign('category')->references('id')->on('categories');
             $table->unsignedBigInteger('city');
@@ -37,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('announcments');
+        Schema::dropIfExists('posts');
     }
 };

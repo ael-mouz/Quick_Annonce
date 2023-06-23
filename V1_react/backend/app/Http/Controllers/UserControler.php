@@ -51,7 +51,6 @@ class UserControler extends Controller
         }
         
         return response()->json(['message' => ' something happen maybe user not found'], 404);
-        // return $request->all();
 
     }
 

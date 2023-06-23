@@ -25,7 +25,6 @@ class AuthController extends Controller
             'email' => 'required|string|email|unique:users',
             'phone' => 'string',
             'gender' => 'string',
-            'role' => 'string'
         ]);
 
         $user = User::create([
@@ -37,7 +36,6 @@ class AuthController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'gender' => $request->gender,
-            'role' => $request->role,
         ]);
 
         $token = $user->createToken('authToken')->plainTextToken;
@@ -68,7 +66,13 @@ class AuthController extends Controller
             $user = Auth::user();
             $user->save();
             $token = $user->createToken('authToken')->plainTextToken;
-            return response()->json(['message' => 'Login successful', 'user' => auth()->user(),'token' => $token , 'userRole' => $user->role]);
+            return response()->json([
+                'message' => 'Login successful',
+                'user' => auth()->user(),
+                'token' => $token ,
+                'userRole' => $user->role ,
+                'username' => $user->username
+             ]);
         }
 
     return response()->json(['message' => 'Invalid credentials' ], 401);
