@@ -1,0 +1,1 @@
+php artisan vendor:publish --tag=laravel-pagination

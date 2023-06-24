@@ -11,13 +11,23 @@
         </div>
     </div>
     <ul class="list-group list-group-flush mt-2">
-        <li class="list-group-item" style="background: #4E90FE">Accueil</li>
-        <li class="list-group-item" style="background: #4E90FE">Validation des annonces</li>
-        <li class="list-group-item" style="background: #4E90FE">Gestion des villes</li>
-        <li class="list-group-item" style="background: #4E90FE">Gestion des categories</li>
         <li class="list-group-item" style="background: #4E90FE">
-            <a href="{{ route('users.index') }}" class="text-white">Supprimer un membre</a>
+            <a href="{{ route('announcement') }}" class="text-white">Accueil</a>
         </li>
-        <li class="list-group-item" style="background: #4E90FE">Supprimer une annonces</li>
+        <li class="list-group-item" style="background: #4E90FE">
+            <a href="{{ route('validate_announcement_page') }}" class="text-white">Validation des annonces</a>
+            </li>
+        <li class="list-group-item" style="background: #4E90FE">
+            <a href="{{ route('show_city') }}" class="text-white">Gestion des villes</a>
+        </li>
+        <li class="list-group-item" style="background: #4E90FE">
+            <a href="{{ route('show_category') }}" class="text-white">Gestion des categories</a>
+        </li>
+        <li class="list-group-item" style="background: #4E90FE">
+            <a href="{{ route('show_users') }}" class="text-white">Supprimer un membre</a>
+        </li>
+        <li class="list-group-item" style="background: #4E90FE">
+            <a href="{{ route('delete_announcements_page') }}" class="text-white">Supprimer une annonces</a>
+        </li>
     </ul>
 </div>

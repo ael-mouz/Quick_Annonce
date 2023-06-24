@@ -25,11 +25,7 @@
             @include('components.sidebar.sidebar-member')
         @endif
         <div class="content col-10" id="content">
-            @if (auth()->check())
-                @yield('content')
-            @else
-                @include('components.auth.register')
-            @endif
+            @yield('content')
         </div>
     </section>
 </body>

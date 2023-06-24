@@ -13,7 +13,9 @@
         </div>
     </div>
     <ul class="list-group list-group-flush mt-2">
-        <li class="list-group-item" style="background: #4E90FE">accueil</li>
+        <li class="list-group-item" style="background: #4E90FE">
+            <a href="{{ route('announcement') }}" class="text-white">Accueil</a>
+        </li>
         <li class="list-group-item" style="background: #4E90FE">immobilier</li>
         <li class="list-group-item" style="background: #4E90FE">multimidia</li>
         <li class="list-group-item" style="background: #4E90FE">maison</li>

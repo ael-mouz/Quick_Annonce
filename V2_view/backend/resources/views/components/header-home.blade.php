@@ -13,13 +13,13 @@
             </div>
             <div class="d-flex justify-content-between">
                 @if (auth()->check())
-                    <div class="nav-link pe-5">
+                    <form class="nav-link pe-5" method="GET" action="{{ route('home') }}">
                         <img src="{{ asset('img/user.svg') }}" alt="user">
                         <button type="submit" class="btn btn-unstyled border-0" style="font-size: 20px;color:white"
                             disabled><u><strong>Bienvenue
                                     {{ auth()->user()->username }}
                                     !</strong></u></button>
-                    </div>
+                    </form>
                     <form class="nav-link pe-5" method="POST" action="{{ route('logout') }}">
                         @csrf
                         <img src="{{ asset('img/lock.svg') }}" alt="user">
@@ -27,18 +27,18 @@
                                     déconnecter </strong></u></button>
                     </form>
                 @else
-                    <div class="nav-link pe-5">
+                    <form class="nav-link pe-5" method="GET" action="{{ route('home') }}">
                         <img src="{{ asset('img/user.svg') }}" alt="user">
                         <button type="submit"
                             class="btn btn-unstyled"style="font-size: 20px;color:white"><u><strong>Créer
                                     compte</strong></u></button>
-                    </div>
-                    <div class="nav-link pe-5">
+                    </form>
+                    <form class="nav-link pe-5" method="GET" action="{{ route('home') }}">
                         <img src="{{ asset('img/lock.svg') }}" alt="user">
                         <button type="submit" class="btn btn-unstyled"
                             style="font-size: 20px;color:white"><u><strong>Se
                                     connecter</strong></u></button>
-                    </div>
+                    </form>
                 @endif
             </div>
         </div>
@@ -69,8 +69,10 @@
         </div>
     </nav>
     <div class="d-flex justify-content-center">
-        <div class="btn-group rounded col-11" role="group" aria-label="Basic example" style="background: #4E90FE">
-            <button type="button" class="btn btn-lg btn-unstyled">accueil</button>
+        <div class="btn-group rounded col-11" role="group" aria-label="Basic example" style="background: #1c5684">
+            <button type="button" class="btn btn-lg btn-unstyled">
+                <a href="{{ route('announcement') }}" class="text-white">Accueil</a>
+            </button>
             <div style="width:1px;background:white"></div>
             <button type="button" class="btn btn-lg btn-unstyled">immobilier</button>
             <div style="width:1px;background:white"></div>
