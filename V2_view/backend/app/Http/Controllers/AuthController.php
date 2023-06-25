@@ -18,7 +18,7 @@ class AuthController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('announcements');
         }
         return redirect()->route('home')->with('error', 'Invalid credentials');
     }
@@ -54,7 +54,7 @@ class AuthController extends Controller
         if ($user) {
             Auth::login($user);
             $request->session()->regenerate();
-            return redirect()->route('home')->with('success', 'You have successfully registered');
+            return redirect()->route('announcements')->with('success', 'You have successfully registered');
         } else {
             return redirect()->route('home')->with('error', 'Failed to register user');
         }
