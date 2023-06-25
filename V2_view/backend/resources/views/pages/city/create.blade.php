@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row" id="register">
-        <form action="{{ route('store_announcement') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('store_city') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <br>
             <div class="bar-banner">
@@ -17,7 +17,7 @@
             <input type="number" name="zip_code" class="mb-1 form-control"
                 placeholder="zip code" autocomplete="off" required>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">S'inscrire</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
             </div>
         </form>
     </div>

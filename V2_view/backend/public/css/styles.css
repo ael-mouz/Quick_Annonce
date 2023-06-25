@@ -54,3 +54,15 @@ a{
     transform: translate(10px, -30px);
     position: absolute;
 }
+
+.pop
+{
+    position: relative;
+}
+
+.alert
+{
+    position: absolute;
+    top: -200px;
+    left: 45%;
+}

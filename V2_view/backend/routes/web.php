@@ -43,6 +43,10 @@ Route::get('/announcements/emploi', [AnnouncementController::class, 'index_five'
     ->name('emploi_announcements');
 Route::get('/announcements/objects', [AnnouncementController::class, 'index_six'])
     ->name('objects_announcements');
+Route::post('/announcements/filter', [AnnouncementController::class, 'filter_announcement'])
+    ->name('filter_announcement');
+Route::post('/announcements/search', [AnnouncementController::class, 'search_announcement'])
+    ->name('search_announcement');
 
 Route::middleware([AdminMiddleware::class])->group(function () {
 

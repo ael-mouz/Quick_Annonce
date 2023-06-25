@@ -1,6 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
+    <form  action="{{ route('filter_announcement') }}" method="POST">
+        @csrf
+        <div class="row col-10 mb-1 mt-2 mx-auto">
+            <div class="col">
+                <label for="sortOption" class="form-label">order :</label>
+                <select name="order" class="form-select">
+                    <option value="asc">incrémenter</option>
+                    <option value="desc">décrémenter</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="sortOption" class="form-label">Trier par :</label>
+                <select name="sort" class="form-select">
+                    <option value="id"></option>
+                    <option value="title">Titre</option>
+                    <option value="price">Prix</option>
+                    <option value="created_at">Date</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="cityFilter" class="form-label">Ville :</label>
+                <select name="city" class="form-select">
+                    <option value=""></option>
+                    @foreach ($city as $ct)
+                        <option value="{{ $ct->id }}">{{ $ct->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col">
+                <label for="categoryFilter" class="form-label">Categorie :</label>
+                <select  name="category" class="form-select">
+                    <option value=""></option>
+                    @foreach ($category as $cat)
+                        <option value="{{ $cat->id }}">{{ $cat->sub_cat }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-3 mx-auto">
+            <button type="submit" class="btn btn-success form-control">Filter</button>
+        </div>
+    </form>
     <div class="table-responsive rounded col-11 mx-auto mt-2">
         @if ($announcement->isEmpty())
             <h1 class="text-center mt-5">Aucune annonce</h1>

@@ -49,22 +49,25 @@
                 <img class="logo"src="{{ asset('img/logo.png') }}" alt="Quick annonce">
             </div>
             <div class="col-4">
-                <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Que recherchez-vous?" aria-label="Search"
-                        aria-describedby="search-addon" />
-                    <button type="button" class="btn" style="background:#5390ed">Chercher</button>
-                </div>
+                <form action="{{ route('search_announcement') }}" method="POST">
+                    @csrf
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Que recherchez-vous?" name="search"
+                            aria-label="Search" aria-describedby="search-addon" />
+                        <button type="submit" class="btn" style="background:#5390ed">Chercher</button>
+                    </div>
+                </form>
             </div>
             <div class="col-3 d-flex justify-content-center align-items-center">
                 <div class="d-flex justify-content-center align-items-center" style="box-shadow: #4f4f4f 0px 10px 10px">
                     <img class="p-3" src="{{ asset('img/cart.svg') }}" alt="cart"
-                    style="background:#4f4f4f;border-radius:5px 0  0 0;"></img>
+                        style="background:#4f4f4f;border-radius:5px 0  0 0;"></img>
                     <button type="button" class="p-2 border-0"
-                    style="line-height: 8px;background: #97bbdb;border-radius:0 5px 0 0 ">
-                    <a href="{{ route('create_announcement') }}" class="text-white">
-                        <p>DEPOSER VOTRE</p>
-                        <strong>ANNONCE</strong>
-                    </a>
+                        style="line-height: 8px;background: #97bbdb;border-radius:0 5px 0 0 ">
+                        <a href="{{ route('create_announcement') }}" class="text-white">
+                            <p>DEPOSER VOTRE</p>
+                            <strong>ANNONCE</strong>
+                        </a>
                     </button>
                 </div>
             </div>

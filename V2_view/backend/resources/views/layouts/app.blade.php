@@ -12,12 +12,12 @@
 
 <body>
     @include('components.header-home')
+    <div class="pop">@include('components.alerts.alert')</div>
     @if (auth()->check())
         <div></div>
     @else
         @include('components.about-us')
     @endif
-    @include('components.alerts.alert')
     <section class="container-fluid d-flex justify-content-center">
         @if (auth()->check() && auth()->user()->role == 'admin')
             @include('components.sidebar.sidebar-admin')
@@ -36,5 +36,4 @@
         });
     }, 4000);
 </script>
-
 </html>
