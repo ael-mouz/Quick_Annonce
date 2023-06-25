@@ -14,7 +14,7 @@
                         <th class="py-3 text-center col-2">Prix</th>
                         <th class="py-3 text-center col-2">Ville</th>
                         <th class="py-3 text-center col-2">Date</th>
-                        @if (auth()->check())
+                        @if (auth()->check() && auth()->user()->role == 'admin')
                             <th class="py-3 text-center col-1">Editer</th>
                         @endif
                     </tr>
@@ -30,7 +30,7 @@
                             <td class="py-3 text-center"><strong>{{ $ann->price }}DH</strong></td>
                             <td class="py-3 text-center">{{ $ann->name }}</td>
                             <td class="py-3 text-center">{{ $ann->created_at }}</td>
-                            @if (auth()->check())
+                            @if (auth()->check() && auth()->user()->role == 'admin')
                                 <td class="py-3 text-center">
                                     <a href="{{ route('edit_announcements', $ann->ann_id) }}" class="btn btn-primary">
                                         Editer

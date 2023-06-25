@@ -21,15 +21,85 @@ class AnnouncementController extends Controller
             ->paginate(7);
         return view('pages.announcement.index', compact('announcement'));
     }
+    public function index_one()
+    {
+        $announcement = Announcement::join('city', 'announcement.city', '=', 'city.id')
+            ->join('category', 'announcement.category', '=', 'category.id')
+            ->select('announcement.*', 'announcement.id as ann_id', 'city.*', 'category.*')
+            ->where('announcement.is_validated', true)
+            ->where('category.cat', '=', 'immobilier')
+            ->paginate(7);
+            return view('pages.immobilier', compact('announcement'));
+        }
+        public function index_two()
+        {
+            $announcement = Announcement::join('city', 'announcement.city', '=', 'city.id')
+            ->join('category', 'announcement.category', '=', 'category.id')
+            ->select('announcement.*', 'announcement.id as ann_id', 'city.*', 'category.*')
+            ->where('announcement.is_validated', true)
+            ->where('category.cat', '=', 'multimedia')
+            ->paginate(7);
+            return view('pages.multimedia', compact('announcement'));
+        }
+        public function index_tree()
+        {
+            $announcement = Announcement::join('city', 'announcement.city', '=', 'city.id')
+            ->join('category', 'announcement.category', '=', 'category.id')
+            ->select('announcement.*', 'announcement.id as ann_id', 'city.*', 'category.*')
+            ->where('announcement.is_validated', true)
+            ->where('category.cat', '=', 'maison')
+            ->paginate(7);
+            return view('pages.maison', compact('announcement'));
+        }
+        public function index_four()
+        {
+            $announcement = Announcement::join('city', 'announcement.city', '=', 'city.id')
+            ->join('category', 'announcement.category', '=', 'category.id')
+            ->select('announcement.*', 'announcement.id as ann_id', 'city.*', 'category.*')
+            ->where('announcement.is_validated', true)
+            ->where('category.cat', '=', 'vehicules')
+            ->paginate(7);
+            return view('pages.vehicules', compact('announcement'));
+        }
+        public function index_five()
+        {
+            $announcement = Announcement::join('city', 'announcement.city', '=', 'city.id')
+            ->join('category', 'announcement.category', '=', 'category.id')
+            ->select('announcement.*', 'announcement.id as ann_id', 'city.*', 'category.*')
+            ->where('announcement.is_validated', true)
+            ->where('category.cat', '=', 'emploi & services')
+            ->paginate(7);
+            return view('pages.emploi', compact('announcement'));
+        }
+    public function index_six()
+    {
+        $announcement = Announcement::join('city', 'announcement.city', '=', 'city.id')
+        ->join('category', 'announcement.category', '=', 'category.id')
+        ->select('announcement.*', 'announcement.id as ann_id', 'city.*', 'category.*')
+        ->where('announcement.is_validated', true)
+        ->where('category.cat', '=', 'objects personnels')
+            ->paginate(7);
+        return view('pages.objects', compact('announcement'));
+    }
 
+    public function My_announcement()
+    {
+        $announcement = Announcement::join('city', 'announcement.city', '=', 'city.id')
+        ->join('category', 'announcement.category', '=', 'category.id')
+        ->select('announcement.*', 'announcement.id as ann_id', 'city.*', 'category.*')
+        ->where('announcement.is_validated', true)
+        ->where('announcement.username', '=' , auth()->user()->username)
+            ->paginate(7);
+        return view('pages.objects', compact('announcement'));
+    }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $categories = Category::all();
-        $cities = City::all();
-        return view('pages.announcement.create', compact('categories', 'cities'));
+        $category = Category::all();
+        $city = City::all();
+        return view('pages.announcement.create', compact('category', 'city'));
     }
 
     /**
@@ -40,20 +110,43 @@ class AnnouncementController extends Controller
         $validatedData = $request->validate([
             'username' => 'required',
             'email' => 'required|email',
-            'category' => 'required|exists:categories,id',
-            'city' => 'required|exists:cities,id',
+            'category' => 'required|exists:category,id',
+            'city' => 'required|exists:city,id',
             'title' => 'required',
             'description' => 'required',
-            'price' => 'required|numeric',
-            'picture_1' => 'required',
-            'picture_2' => 'required',
-            'picture_3' => 'required',
-            'picture_4' => 'required',
-            'picture_5' => 'required',
-            'is_validated' => 'required|boolean',
+            'price' => 'required',
+            'picture_1' => 'required|image',
+            'picture_2' => 'required|image',
+            'picture_3' => 'required|image',
+            'picture_4' => 'required|image',
+            'picture_5' => 'required|image',
         ]);
 
-        Announcement::create($validatedData);
+        $announcement = new Announcement;
+        $announcement->username = $request->input('username');
+        $announcement->email = $request->input('email');
+        $announcement->category = $request->input('category');
+        $announcement->city = $request->input('city');
+        $announcement->title = $request->input('title');
+        $announcement->description = $request->input('description');
+        $announcement->price = $request->input('price');
+
+        // Upload and store the files
+        $picturePaths = [];
+        for ($i = 1; $i <= 5; $i++) {
+            $file = $request->file("picture_$i");
+            $path = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images'), $path);
+            $picturePaths["picture_$i"] = $path;
+        }
+
+        $announcement->picture_1 = $picturePaths['picture_1'];
+        $announcement->picture_2 = $picturePaths['picture_2'];
+        $announcement->picture_3 = $picturePaths['picture_3'];
+        $announcement->picture_4 = $picturePaths['picture_4'];
+        $announcement->picture_5 = $picturePaths['picture_5'];
+
+        $announcement->save();
 
         return redirect()->route('announcement')->with('success', 'Announcement created successfully.');
     }

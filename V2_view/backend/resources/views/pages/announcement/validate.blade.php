@@ -23,7 +23,10 @@
                 <tbody>
                     @foreach ($announcement as $ann)
                         <tr>
-                            <td class="py-3 text-center">{{ $ann->picture_1 }}</td>
+                            <td class="py-3 text-center">
+                                <img src="{{ asset('images/' . $ann->picture_1) }}" alt="image" height="100px"
+                                    width="150px">
+                            </td>
                             <td class="py-3 text-center"><u>{{ $ann->title }}</u></td>
                             <td class="py-3 text-center"><strong>{{ $ann->price }}DH</strong></td>
                             <td class="py-3 text-center">{{ $ann->name }}</td>

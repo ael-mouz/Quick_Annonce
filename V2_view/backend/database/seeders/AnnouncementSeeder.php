@@ -169,6 +169,21 @@ class AnnouncementSeeder extends Seeder
                 'picture_5' => 'example50.jpg',
                 'is_validated' => false,
             ],
+            [
+                'username' => 'admin',
+                'email' => 'admin@example.com',
+                'category' => $categories[array_rand($categories)],
+                'city' => $cities[array_rand($cities)],
+                'title' => 'Example Announcement 10',
+                'description' => 'This is another example announcement.',
+                'price' => 550.00,
+                'picture_1' => 'example46.jpg',
+                'picture_2' => 'example47.jpg',
+                'picture_3' => 'example48.jpg',
+                'picture_4' => 'example49.jpg',
+                'picture_5' => 'example50.jpg',
+                'is_validated' => true,
+            ],
             // Add more announcements here
         ];
 

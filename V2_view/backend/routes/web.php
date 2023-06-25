@@ -23,10 +23,26 @@ Route::get('/', function () {
     return view('pages.home.index');
 })->name('home');
 
-Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcement');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/announcements', [AnnouncementController::class, 'index'])
+->name('announcement');
+Route::post('/register', [AuthController::class, 'register'])
+->name('register');
+Route::post('/login', [AuthController::class, 'login'])
+->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])
+->name('logout');
+Route::get('/announcements/immobilier', [AnnouncementController::class, 'index_one'])
+    ->name('immobilier_announcements');
+Route::get('/announcements/multimedia', [AnnouncementController::class, 'index_two'])
+    ->name('multimedia_announcements');
+Route::get('/announcements/maison', [AnnouncementController::class, 'index_tree'])
+    ->name('maison_announcements');
+Route::get('/announcements/vehicules', [AnnouncementController::class, 'index_four'])
+    ->name('vehicules_announcements');
+Route::get('/announcements/emploi', [AnnouncementController::class, 'index_five'])
+    ->name('emploi_announcements');
+Route::get('/announcements/objects', [AnnouncementController::class, 'index_six'])
+    ->name('objects_announcements');
 
 Route::middleware([AdminMiddleware::class])->group(function () {
 
@@ -70,12 +86,14 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/announcements/create', [AnnouncementController::class, 'create'])
-        ->name('create_announcements');
     Route::post('/announcements', [AnnouncementController::class, 'store'])
-        ->name('store_announcements');
+        ->name('store_announcement');
+        Route::put('/announcements/{id}', [AnnouncementController::class, 'update'])
+            ->name('update_announcement');
+    Route::get('/announcements/create', [AnnouncementController::class, 'create'])
+        ->name('create_announcement');
     Route::get('/announcements/{id}/edit', [AnnouncementController::class, 'edit'])
         ->name('edit_announcements');
-    Route::put('/announcements/{id}', [AnnouncementController::class, 'update'])
-        ->name('update_announcements');
+    Route::get('/announcements/myannouncement', [AnnouncementController::class, 'my_announcement'])
+        ->name('my_announcement');
 });

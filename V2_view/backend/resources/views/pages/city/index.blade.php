@@ -5,6 +5,7 @@
         @if ($city->isEmpty())
             <h1 class="text-center mt-5">Aucune ville</h1>
         @else
+            <a href="{{ route('create_city') }}" class="btn btn-success text-white">Ajouter des villes</a>
             <table class="table table-hover">
                 <caption class="text-center">Liste des villes</caption>
                 <thead style="border-bottom:2px black solid">

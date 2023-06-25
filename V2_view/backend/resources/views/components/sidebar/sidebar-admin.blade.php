@@ -1,11 +1,12 @@
 <div class="side-bar col-2" id="side-bar">
 
-    <button class="btn my-2" style="background: #4E90FE">My annonce</button>
-
+    <a href="{{ route('my_announcement') }}">
+        <button class="btn my-2 text-white" style="background: #4E90FE">My annonce</button>
+    </a>
     <br>
     <div class="bar-banner">
         <img src="{{ asset('img/banner2.svg') }}" alt="user" width="100%">
-        <div class="bar-banner-title">
+        <div class="bar-banner-title text-white">
             <img src="{{ asset('img/lock.svg') }}" alt="user">
             <span>Menu</span>
         </div>

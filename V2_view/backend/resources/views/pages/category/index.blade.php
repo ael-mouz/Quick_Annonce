@@ -5,6 +5,7 @@
         @if ($category->isEmpty())
             <h1 class="text-center mt-5">Aucune categorie</h1>
         @else
+            <a href="{{ route('create_category') }}" class="btn btn-success text-white">Ajouter des ctaegories</a>
             <table class="table table-hover">
                 <caption class="text-center">Liste des categories</caption>
                 <thead style="border-bottom:2px black solid">

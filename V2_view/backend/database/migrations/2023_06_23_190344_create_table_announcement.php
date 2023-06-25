@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('picture_3');
             $table->string('picture_4');
             $table->string('picture_5');
-            $table->boolean('is_validated');
+            $table->boolean('is_validated')->default(false);
             $table->foreign('category')->references('id')->on('category')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('city')->references('id')->on('city')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
