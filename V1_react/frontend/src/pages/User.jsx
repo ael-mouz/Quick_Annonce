@@ -6,6 +6,10 @@ import userLogo from "../images/user.svg";
 import lockUser from "../images/lock.svg";
 import AboutUs from "../components/AboutUs";
 import { useLocation } from 'react-router-dom';
+import Header from "../components/headers/Header";
+import UserSideBare from "../components/sidebar/SideBarContentMemberr";
+
+// import UserSideBare from "../components/sidebar/SideBarContentMember";
 
 
 
@@ -54,6 +58,12 @@ const UserHome = () => {
         <div class="nav-link ">
             <button onClick={handleLogout}>logout</button>
             {error && <p>{error}</p>}
+        </div>
+      </div>
+      <Header/>
+      <div className="container">
+          <div className="row ">
+          <UserSideBare />
         </div>
       </div>
     </>

@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'username' => 'required|string',
+            'username' => 'required|string|unique:users',
             'firstname' => 'required|string',
             'lastname' => 'required|string',
             'password' => 'required|string',
@@ -71,7 +71,8 @@ class AuthController extends Controller
                 'user' => auth()->user(),
                 'token' => $token ,
                 'userRole' => $user->role ,
-                'username' => $user->username
+                'username' => $user->username,
+                'id' => $user->id
              ]);
         }
 

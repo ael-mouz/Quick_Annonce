@@ -3,11 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import userLogo from "../images/user.svg";
+import Header from "../components/headers/Header";
+import AdminSideBare from "../components/sidebar/SideBarContentAdmin";
 
-const style = {
-  background: "rgb(22 134 227)",
-  padding: "8px 20px",
-};
 const AdminHome = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -40,10 +38,10 @@ const AdminHome = () => {
   return (
     <>
       <div
-        style={style}
-        class="container d-flex justify-content-between text-white "
+        class="container d-flex justify-content-between text-white bg-primary "
+        style={{padding : '8px 20px'}}
       >
-        <div>Pannel d'administration</div>
+        <div><u>Pannel d'administration</u></div>
         
         <div style={{ marginLeft: "60%" }} class="nav-link ">
           <img src={userLogo} alt="user" />
@@ -52,6 +50,13 @@ const AdminHome = () => {
         <div class="nav-link ">
           <button className="btn btn-light" onClick={handleLogout}>Deconnecxion</button>
           {error && <p>{error}</p>}
+        </div>
+      </div>
+      <Header/>
+      
+      <div className="container">
+          <div className="row ">
+          <AdminSideBare />
         </div>
       </div>
     </>

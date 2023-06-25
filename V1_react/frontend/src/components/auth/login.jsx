@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 import Lock from '../../images/lock.svg'
 import banner from '../../images/banner2.svg'
 
@@ -20,11 +19,12 @@ const LoginForm = () => {
         password,
       });
       if (response.data.userRole === "admin") {
-        const data = {
+        const data = { 
+          id : response.data.id,
           token: response.data.token,
           name: response.data.username,
         };
-        console.log(data.name);
+        console.log(data.id);
         navigate("/admin/Home", { state: data });
       } else {
         const data = {

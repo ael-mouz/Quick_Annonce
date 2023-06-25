@@ -63,4 +63,5 @@ Route::post('/post/update/{id}', [PostController::class, 'update']);
 Route::get('/post/destroy/{id}', [PostController::class, 'destroy']);
 Route::get('/post/search/{title}', [PostController::class, 'search']);
 Route::get('/post/filter', [PostController::class, 'filterData']);
-Route::post('/post/validate/{id}', [PostController::class, 'validate']);
+Route::get('/post/showInvalidatedPosts', [PostController::class, 'showInvalidatedPosts']);
+Route::post('/post/validation/{id}', [PostController::class, 'validation']);

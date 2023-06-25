@@ -12,4 +12,13 @@ code {
     monospace;
 }
 
+#side_admin_li li{
+  transition: transform 0.3s;
+
+}
+#side_admin_li li:hover{
+  color: black;
+  transform: translateX(3px);
+}
+
 

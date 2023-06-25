@@ -96,6 +96,17 @@ class PostController extends Controller
 
     }
 
+    public function showInvalidatedPosts( Request $request)
+    {
+        $query = Post::query();
+        $query->where('is_validated', 0);
+
+        $results = $query->get();
+
+        return response()->json($results);
+
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -148,7 +159,7 @@ class PostController extends Controller
 
         if ($request->has('price')) {
             $price = $request->input('price');
-            $query->where('price', $price);
+            $query->where('price', '<=', $price);
         }
 
         if ($request->has('city')) {
@@ -166,13 +177,14 @@ class PostController extends Controller
         return response()->json($results);
     }
 
-    public function validate(Request $request, $id)
+
+    public function validation(Request $request, $id)
     {
         $post = Post::find($id);
         if ($post) {
             $post->is_validated = 1;
             $post->save();
-            return response()->json(['message' => ' post validated sucssefuly', 'post' => $post], 201);
+            return response()->json(['message' => ' post updated sucssefuly', 'Post' => $post], 201);
         }
 
         return response()->json(['message' => ' something happen maybe this post not exist'], 404);

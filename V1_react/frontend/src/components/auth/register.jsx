@@ -28,6 +28,10 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/register', formData);
+      alert('bien reister login')
+      
+      // Clear the form inputs
+      setFormData([]);
       console.log(response.data); // Handle the API response
     } catch (error) {
       console.error(error); // Handle any errors
